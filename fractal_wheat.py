@@ -9,7 +9,7 @@ from lsys import gen_lsys
 import turtle
 
 segment_length = 10
-angle = 24
+angle = 25
 pos_stack = []
 
 def draw_segment():
@@ -28,7 +28,7 @@ def init_turtle():
     turtle.ht()
     turtle.up()
     turtle.speed(0)
-    turtle.setpos(-500, -300)
+#    turtle.setpos(-500, -300)
     turtle.left(60)
     turtle.colormode(255)
     turtle.pencolor((150,150,0))
@@ -53,7 +53,9 @@ alphabet = { 'F' : draw_segment,
            }
 axiom    = 'X'
 rules    = { 'F' : 'FF',
-             'X' : 'F-[[X]+X]+[X]+F[+FX]-X',
+             'f' : 'FX',
+             'X' : 'F-[[X]+X]+F[+FX]-X',
+             'x' : 'F+[[X]-X]-F[-FX]+X',
            }
 
 def main():

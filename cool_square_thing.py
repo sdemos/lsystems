@@ -5,7 +5,7 @@
 ########################################
 
 import sys
-import lsys
+from lsys import gen_lsys
 import turtle
 
 segment_length = 5
@@ -22,6 +22,9 @@ def draw_blank_segment():
 def turn_left():
     turtle.left(angle)
 
+def turn_half_left():
+    turtle.left(angle/2)
+
 def turn_right():
     turtle.right(angle)
 
@@ -33,20 +36,21 @@ def init_turtle():
     turtle.down()
 
 alphabet = { 'F' : draw_segment,
-             'f' : draw_blank_segment,
+             'G' : draw_blank_segment,
              '+' : turn_left,
              '-' : turn_right,
+             '/' : turn_half_left,
            }
 axiom    = 'F+F+F+F'
-rules    = { 'F' : 'F+f-FF+F+FF+Ff+FF-f+FF-F-FF-Ff-FFF',
-             'f' : 'ffffff',
+rules    = { 'F' : 'F+G-FF+F+FF+FG+FF-G+FF-F-FF-FG-FFF',
+             'f' : 'F/G-FF/F/FF/FG/FF-G/FF-F-FF-FG-FFF',
+             'G' : 'GGGGGG',
+             'g' : 'GGFFGG',
            }
 
 def main():
     init_turtle()
-    koch_curve = lsys.lsystem(alphabet, axiom, rules)
-    tree = koch_curve.apply_rules(int(sys.argv[1]))
-    koch_curve.perform_actions(tree)
+    gen_lsys(alphabet, axiom, rules, int(sys.argv[1]), rw = 's')
     print 'click to exit'
     turtle.exitonclick()
 

@@ -4,6 +4,8 @@
 # author: stphndemos
 ######################################
 
+from random import random
+
 class lsystem():
 
     alphabet = {}
@@ -35,7 +37,7 @@ class lsystem():
     returns:
         tree with rules applied depth times
     """
-    def apply_rules(self, depth, tree = 'workaround!'):
+    def apply_rules(self, depth, tree = 'workaround!', random_weight = .5):
         if tree == 'workaround!':
             tree = self.axiom
         if depth == 0:
@@ -43,6 +45,9 @@ class lsystem():
         out_tree = ''
         for c in tree:
             if c in self.rules:
+                if c.lower() in self.rules:
+                    if random() > random_weight:
+                        c = c.lower()
                 out_tree += self.rules[c]
             else:
                 out_tree += c
@@ -52,9 +57,9 @@ class lsystem():
         for c in tree:
             self.alphabet[c]()
     
-def gen_lsys(alphabet, axiom, rules, depth):
+def gen_lsys(alphabet, axiom, rules, depth, rw = .5):
     system = lsystem(alphabet, axiom, rules)
-    output = system.apply_rules(depth)
+    output = system.apply_rules(depth, random_weight = rw)
     print output
     system.perform_actions(output)
 

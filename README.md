@@ -16,3 +16,5 @@ The order of the created files (so that you can see the progress, and also becau
 
 I got it down to a pretty general system, but there are somethings that need to be explicitly programmed everytime for flexability overall. 
 Maybe if I made a libary with some general functions, it would be cool. Maybe that really woudn't do that much though, I don't know. 
+
+Added ability for stochastic lsystems. They are used by having an uppercase and a lowercase letter in the rules, if this happens it automatically chooses between them. I think I am going to reimplement this, using a list of dictionaries of possible values. I was going to let you pass in a weight for the randomness, but that doesn't work yet. 
